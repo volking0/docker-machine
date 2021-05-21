@@ -1,8 +1,5 @@
 FROM docker:dind
 
-ENV DOCKER_MACHINE_NAME=default
-ENV DOCKER_MACHINE_PORT=2376
-
 RUN apk update && \
     apk add --no-cache bash docker curl openssh-client \
     py3-pip docker-cli python3 py-pip python3-dev libffi-dev \
@@ -16,4 +13,6 @@ RUN DOWNLOAD_URL=$(curl -s https://api.github.com/repos/docker/machine/releases 
 
 COPY entrypoint.sh /
 RUN ["chmod", "+x", "/entrypoint.sh"]
+ENV DOCKER_MACHINE_NAME=default
+ENV DOCKER_MACHINE_PORT=2376
 ENTRYPOINT ["/entrypoint.sh"]
