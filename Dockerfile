@@ -14,5 +14,5 @@ RUN pip install awscli \
     && aws --version
 
 COPY entrypoint.sh /
-
+RUN ["chmod", "+x", "/entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
